@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block auth_content %}
+    <div class="auth-form">
+        <h1 style="color: #008C1E; margin-bottom: 8px; font-size: 36px;">Toliq</h1>
+        <h2 style="margin-bottom: 35px; color: #ccc;">Регистрация</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                    {% if 'register' in message.tags %}
+                    <div style="padding: 14px; border-radius: 8px; margin-bottom: 20px;
+                                background: #4d1a1a; color: #ff6b6b;">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Имя пользователя -->
+            <div style="text-align: left; margin-bottom: 18px;">
+                <label style="color: #aaa; font-size: 14px; display: block; margin-bottom: 6px;">Имя пользователя</label>
+                <input type="text" name="username" placeholder="Введите имя пользователя" required
+                       style="width: 100%; padding: 14px; background: #222; border: 1px solid #444; border-radius: 8px; color: white;">
+                {% if form.username.errors %}
+                    <p style="color: #ff6b6b; font-size: 13px; margin-top: 5px;">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Пароль -->
+            <div style="text-align: left; margin-bottom: 18px;">
+                <label style="color: #aaa; font-size: 14px; display: block; margin-bottom: 6px;">Пароль</label>
+                <input type="password" name="password1" placeholder="Придумайте пароль" required
+                       style="width: 100%; padding: 14px; background: #222; border: 1px solid #444; border-radius: 8px; color: white;">
+                {% if form.password1.errors %}
+                    <p style="color: #ff6b6b; font-size: 13px; margin-top: 5px;">{{ form.password1.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Повтор пароля -->
+            <div style="text-align: left; margin-bottom: 25px;">
+                <label style="color: #aaa; font-size: 14px; display: block; margin-bottom: 6px;">Повторите пароль</label>
+                <input type="password" name="password2" placeholder="Повторите пароль" required
+                       style="width: 100%; padding: 14px; background: #222; border: 1px solid #444; border-radius: 8px; color: white;">
+                {% if form.password2.errors %}
+                    <p style="color: #ff6b6b; font-size: 13px; margin-top: 5px;">{{ form.password2.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn-green" style="width: 100%; padding: 15px; font-size: 16px;">
+                Зарегистрироваться
+            </button>
+        </form>
+
+        <p style="margin-top: 25px; color: #aaa;">
+            Уже есть аккаунт?
+            <a href="{% url 'login' %}" style="color: #008C1E;">Войти</a>
+        </p>
+    </div>
+{% endblock %}

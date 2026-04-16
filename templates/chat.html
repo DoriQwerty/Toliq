@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="margin-bottom:10px">Чат с {{ other_user.username }}</h2>
+
+    <div style="background: #1f1f1f; padding: 20px; border-radius: 12px; min-height: 400px; margin-bottom: 20px; overflow-y: auto;" id="chat-box">
+        {% for msg in messages %}
+            <div style="margin: 12px 0; {% if msg.sender == request.user %}text-align: right;{% endif %}">
+                <strong style="color: {% if msg.sender == request.user %}#4CAF50{% else %}#888{% endif %};">
+                    {{ msg.sender.username }}
+                </strong><br>
+                <span style="background: #2a2a2a; padding: 8px 12px; border-radius: 8px; display: inline-block; max-width: 70%;">
+                    {{ msg.text }}
+                </span>
+                <small style="color: #666; display: block;">{{ msg.created_at|date:"H:i" }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.text }}
+        <button type="submit" class="btn-green" style="margin-top: 10px;">Отправить</button>
+    </form>
+{% endblock %}

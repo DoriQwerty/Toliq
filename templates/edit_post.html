@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="margin-bottom: 25px; color: #008C1E;">Редактирование поста</h2>
+
+    <div style="background: #1a1a1a; padding: 25px; border-radius: 12px; max-width: 700px;">
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'edit_post' in message.tags %}
+                    <div style="padding: 16px; border-radius: 10px; margin-bottom: 25px; text-align: center; background: #4d1a1a; color: #ff6b6b;">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.text }}
+            <br><br>
+            <button type="submit" class="btn-green" style="padding: 12px 30px; font-size: 16px;">
+                Сохранить изменения
+            </button>
+            <a href="{% url 'feed' %}" style="margin-left: 20px; color: #aaa; font-size: 16px;">Отмена</a>
+        </form>
+    </div>
+{% endblock %}
