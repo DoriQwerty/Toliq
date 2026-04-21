@@ -86,6 +86,104 @@
             border-color: #00ff9d;
             outline: none;
         }
+        /* базово */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+
+    .icon {
+    font-size: 26px;
+    }
+
+    * {
+        max-width: 100%;
+    }
+
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* УБИВАЕМ старую логику layout */
+    .container {
+        display: block !important;
+        width: 100%;
+    }
+
+    /* 🔥 СБРАСЫВАЕМ sidebar полностью */
+    .sidebar {
+        all: unset;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        height: 80px;
+
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        background: #111;
+        border-top: 1px solid #1f1f1f;
+
+        z-index: 1000;
+    }
+
+    /* скрываем логотип */
+    .logo {
+        display: none !important;
+    }
+
+    /* кнопки */
+    .nav-link {
+        all: unset;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 26px;
+        color: #b0b0b0;
+    }
+
+    .nav-link.active {
+        color: white;
+    }
+
+    /* текст убираем полностью */
+    .nav-link .text {
+        display: none !important;
+    }
+
+    /* logout убираем */
+    .logout {
+        display: none !important;
+    }
+
+    /* 🔥 СБРАСЫВАЕМ main */
+    .main {
+        all: unset;
+
+        display: block;
+        padding: 30px 16px 110px 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .right-sidebar {
+        display: none !important;
+    }
+}
     </style>
 </head>
 <body>

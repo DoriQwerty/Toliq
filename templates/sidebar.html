@@ -3,25 +3,30 @@
 
     <a href="{% url 'feed' %}"
        class="nav-link {% if request.resolver_match.url_name == 'feed' %}active{% endif %}">
-        🏠 Лента
+        <span class="icon">🏠</span>
+        <span class="text">Лента</span>
     </a>
 
     <a href="{% url 'messages_list' %}"
        class="nav-link {% if request.resolver_match.url_name == 'messages_list' %}active{% endif %}">
-        ✉️ Сообщения
+        <span class="icon">✉️</span>
+        <span class="text">Сообщения</span>
     </a>
 
     <a href="{% url 'my_profile' %}"
        class="nav-link {% if request.resolver_match.url_name in 'my_profile|profile' %}active{% endif %}">
-        👤 Профиль
+        <span class="icon">👤</span>
+        <span class="text">Профиль</span>
     </a>
 
     <a href="{% url 'search_users' %}"
        class="nav-link {% if request.resolver_match.url_name == 'search_users' %}active{% endif %}">
-        🔍 Поиск
+        <span class="icon">🔍</span>
+        <span class="text">Поиск</span>
     </a>
 
-    <a href="{% url 'logout' %}" class="nav-link" style="margin-top: 50px; color: #ff6b6b;">
-        ⬅️ Выйти
+    <a href="{% url 'logout' %}" class="nav-link logout">
+        <span class="icon">⬅️</span>
+        <span class="text">Выйти</span>
     </a>
 </div>

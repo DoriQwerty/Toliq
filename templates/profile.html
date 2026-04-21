@@ -15,6 +15,14 @@
         <h2>@{{ profile_user.username }}</h2>
     </div>
 
+        {% if profile_user == request.user %}
+    <div style="margin-top: 30px; padding: 20px; background: #1a1a1a; border-radius: 12px;margin-bottom:20px;">
+        <a href="{% url 'logout' %}" class="btn-green" style="display:inline-block; text-decoration:none;">
+            ⬅️ Выйти из аккаунта
+        </a>
+    </div>
+    {% endif %}
+
     <!-- Загрузка аватарки (только для своего профиля) -->
     {% if profile_user == request.user %}
         <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; margin-bottom: 30px;">
