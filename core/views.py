@@ -6,7 +6,6 @@ from django.http import JsonResponse
 from django.db.models import Q
 from .models import Post, Message, Like, User
 from .forms import UserRegistrationForm, PostForm, MessageForm
-from django.core.files.storage import default_storage
 
 
 def register(request):
@@ -143,9 +142,24 @@ def search_users(request):
 
 @login_required
 def messages_list(request):
-    # Простая версия — все пользователи
+    chats = []
+
     users = User.objects.exclude(id=request.user.id)
-    return render(request, 'messages.html', {'users': users})
+
+    for user in users:
+        last_message = Message.objects.filter(
+            Q(sender=request.user, receiver=user) |
+            Q(sender=user, receiver=request.user)
+        ).order_by('-created_at').first()
+
+        if last_message:
+            chats.append({
+                'user': user,
+                'last_message': last_message.text,
+                'last_time': last_message.created_at
+            })
+
+    return render(request, 'messages.html', {'chats': chats})
 
 
 @login_required
