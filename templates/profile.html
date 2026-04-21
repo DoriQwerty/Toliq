@@ -63,13 +63,13 @@
     {% if profile_user == request.user %}
     <div style="margin-top: 50px; padding: 20px; background: #2a1a1a; border-radius: 12px; border: 1px solid #ff6b6b;">
         <h3 style="color: #ff6b6b;">Удаление аккаунта</h3>
-        <p style="color: #aaa;">Это действие нельзя отменить.</p>
+        <p style="color: #aaa;margin-top:10px;">Это действие нельзя отменить.</p>
 
         <form method="post" action="{% url 'delete_account' %}">
             {% csrf_token %}
             <button type="submit"
                     onclick="return confirm('Вы уверены, что хотите удалить аккаунт? Это действие необратимо!')"
-                    style="background:none; border:none; color:#ff6b6b; font-weight:bold; cursor:pointer;">
+                    style="background:none; border:none; color:#ff6b6b; font-weight:bold; cursor:pointer;margin-top:8px;">
                 Удалить мой аккаунт
             </button>
         </form>
