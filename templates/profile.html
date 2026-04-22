@@ -37,9 +37,9 @@
 
     <h3 style="margin-bottom:10px;">Посты пользователя</h3>
     {% for post in posts %}
-        <div style="background: #1a1a1a; padding: 18px; border-radius: 12px; margin-bottom: 15px;">
+        <div style="background: #1a1a1a; padding: 18px; border-radius: 12px;">
             <p style="margin-bottom:10px;">{{ post.text }}</p>
-            <small style="color: #666;">{{ post.created_at|date:"d.m.Y H:i" }}</small>
+            <small style="color: #666;margin-bottom:10px">{{ post.created_at|date:"d.m.Y H:i" }}</small>
             {% if post.author == request.user %}
                     <a href="{% url 'edit_post' post.post_id %}"
                        style="color: #008C1E; margin-left: 10px; font-size: 14.5px;">
@@ -52,7 +52,7 @@
                     </a>
             {% endif %}
             <span onclick="likePost({{ post.post_id }})"
-                      style="cursor: pointer; font-size: 20px; display: flex; align-items: center; gap: 6px;">
+                      style="cursor: pointer; font-size: 20px; display: flex; align-items: center; gap: 6px;margin-top:10px">
                     ❤️ <span id="likes-{{ post.post_id }}">{{ post.likes_count }}</span>
             </span>
         </div>
