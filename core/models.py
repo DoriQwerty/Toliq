@@ -25,7 +25,6 @@ class Post(models.Model):
     def __str__(self):
         return f"Post {self.post_id} by {self.author.username}"
 
-    # Новый метод подсчёта лайков через отдельную таблицу Likes
     def likes_count(self):
         return Like.objects.filter(post=self).count()
 
@@ -37,7 +36,7 @@ class Like(models.Model):
 
     class Meta:
         db_table = 'Likes'
-        unique_together = ('user', 'post')  # один пользователь — один лайк
+        unique_together = ('user', 'post')
 
     def __str__(self):
         return f"Like by {self.user.username} on post {self.post.post_id}"

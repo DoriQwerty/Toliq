@@ -87,7 +87,6 @@ def delete_post(request, post_id):
     return redirect('feed')
 
 
-# ==================== ПРОФИЛЬ ====================
 
 @login_required
 def profile(request, username=None):
@@ -96,7 +95,6 @@ def profile(request, username=None):
     else:
         profile_user = request.user
 
-    # Обработка загрузки аватарки
     if request.method == 'POST' and request.FILES.get('avatar') and profile_user == request.user:
         profile_user.avatar = request.FILES['avatar']
         profile_user.save()
@@ -130,8 +128,6 @@ def delete_account(request):
         return redirect('login')
     return redirect('my_profile')
 
-
-# ==================== ПОИСК И СООБЩЕНИЯ ====================
 
 @login_required
 def search_users(request):
@@ -217,11 +213,9 @@ def edit_post(request, post_id):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            # При успехе — просто возвращаемся в ленту без сообщения
             return redirect('feed')
         else:
-            # Показываем ошибку только при проблеме
-            messages.error(request, '❌ Ошибка при редактировании поста. Проверьте текст.', extra_tags='edit_post')
+            messages.error(request, 'Ошибка при редактировании поста. Проверьте текст.', extra_tags='edit_post')
     else:
         form = PostForm(instance=post)
 

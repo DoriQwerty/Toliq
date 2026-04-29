@@ -8,23 +8,19 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
 
-    # Посты
     path('post/create/', views.create_post, name='create_post'),
     path('post/<int:post_id>/like/', views.like_post, name='like_post'),
     path('post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
 
-    # Сообщения
     path('messages/', views.messages_list, name='messages_list'),
     path('chat/<int:user_id>/', views.chat, name='chat'),
 
-    # Профиль и аватарка
     path('profile/', views.profile, name='my_profile'),
     path('profile/delete/', views.delete_account, name='delete_account'),
     path('profile/<str:username>/', views.profile, name='profile'),
     path('profile/avatar/upload/', views.upload_avatar, name='upload_avatar'),
     path('profile/delete/', views.delete_account, name='delete_account'),
 
-    # Поиск
     path('search/', views.search_users, name='search_users'),
 
     path('admin/', admin.site.urls),

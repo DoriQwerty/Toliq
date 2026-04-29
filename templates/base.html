@@ -12,7 +12,6 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        /* Основной layout */
         .container { display: flex; min-height: 100vh; }
         .sidebar { width: 280px; background: #111; padding: 20px; position: fixed; height: 100vh; border-right: 1px solid #1f1f1f; }
         .main { margin-left: 280px; flex: 1; padding: 25px; max-width: 700px; }
@@ -31,7 +30,6 @@
             padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;
         }
 
-        /* Страницы логина и регистрации */
         .auth-page {
             display: flex;
             align-items: center;
@@ -86,114 +84,106 @@
             border-color: #00ff9d;
             outline: none;
         }
-        /* базово */
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
 
-.icon {
-    font-size: 20px;
-}
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
 
-@media (max-width: 768px) {
+        .icon {
+            font-size: 20px;
+        }
 
-    .icon {
-    font-size: 26px;
-    }
+        @media (max-width: 768px) {
 
-    * {
-        max-width: 100%;
-    }
+            .icon {
+            font-size: 26px;
+            }
 
-    html, body {
-        width: 100%;
-        overflow-x: hidden;
-    }
+            * {
+                max-width: 100%;
+            }
 
-    /* УБИВАЕМ старую логику layout */
-    .container {
-        display: block !important;
-        width: 100%;
-    }
+            html, body {
+                width: 100%;
+                overflow-x: hidden;
+            }
 
-    /* 🔥 СБРАСЫВАЕМ sidebar полностью */
-    .sidebar {
-        all: unset;
+            .container {
+                display: block !important;
+                width: 100%;
+            }
 
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+            .sidebar {
+                all: unset;
 
-        height: 80px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
 
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+                height: 80px;
 
-        background: #111;
-        border-top: 1px solid #1f1f1f;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
 
-        z-index: 1000;
-    }
+                background: #111;
+                border-top: 1px solid #1f1f1f;
 
-    /* скрываем логотип */
-    .logo {
-        display: none !important;
-    }
+                z-index: 1000;
+            }
 
-    /* кнопки */
-    .nav-link {
-        all: unset;
+            .logo {
+                display: none !important;
+            }
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+            .nav-link {
+                all: unset;
 
-        font-size: 26px;
-        color: #b0b0b0;
-    }
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-    .nav-link.active {
-        color: white;
-    }
+                font-size: 26px;
+                color: #b0b0b0;
+            }
 
-    /* текст убираем полностью */
-    .nav-link .text {
-        display: none !important;
-    }
+            .nav-link.active {
+                color: white;
+            }
 
-    /* logout убираем */
-    .logout {
-        display: none !important;
-    }
+            .nav-link .text {
+                display: none !important;
+            }
 
-    /* 🔥 СБРАСЫВАЕМ main */
-    .main {
-        all: unset;
+            /* logout убираем */
+            .logout {
+                display: none !important;
+            }
 
-        display: block;
-        padding: 30px 16px 110px 16px;
-        width: 100%;
-        box-sizing: border-box;
-    }
+            .main {
+                all: unset;
 
-    .right-sidebar {
-        display: none !important;
-    }
-}
+                display: block;
+                padding: 30px 16px 110px 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .right-sidebar {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
     {% if request.resolver_match and request.resolver_match.url_name in 'login|register|password_reset' %}
-        <!-- Страницы без боковых панелей: вход, регистрация, восстановление пароля -->
         <div class="auth-page">
             {% block auth_content %}{% endblock %}
         </div>
     {% else %}
-        <!-- Обычный layout с меню -->
         <div class="container">
             {% include 'sidebar.html' %}
             <div class="main">

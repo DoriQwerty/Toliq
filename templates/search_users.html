@@ -26,7 +26,6 @@
                             {% if user.avatar and user.avatar.url %}
                                 <img src="{{ user.avatar.url }}" style="width: 100%; height: 100%; object-fit: cover;" alt="">
                             {% else %}
-                                <!-- Принудительно показываем инициалы -->
                                 <div style="width: 100%; height: 100%; background: #1f1f1f;
                                             display: flex; align-items: center; justify-content: center;
                                             font-size: 19px; font-weight: bold; color: #ddd;">
